@@ -7,7 +7,7 @@ lazy val root = (project in file(".")).
       organization    := "coop.rchain",
       scalaVersion    := "2.12.4"
     )),
-    name := "Rholang Playground",
+    name := "rholang-playground",
     mainClass in (Compile, run) := Some("coop.rchain.playground.Playground"),
 
     libraryDependencies ++= Seq(
