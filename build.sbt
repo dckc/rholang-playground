@@ -8,6 +8,8 @@ lazy val root = (project in file(".")).
       scalaVersion    := "2.12.4"
     )),
     name := "Rholang Playground",
+    mainClass in (Compile, run) := Some("coop.rchain.playground.Playground"),
+
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-http"            % akkaHttpVersion,
       "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
