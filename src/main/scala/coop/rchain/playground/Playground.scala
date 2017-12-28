@@ -14,17 +14,18 @@ object Playground {
     implicit val materializer: ActorMaterializer = ActorMaterializer()
     implicit val executionContext = system.dispatcher
 
-    lazy val routes: Route =
-      pathPrefix("") {
-        getFromResourceDirectory("playground")
-      }
-
-    val bindingFuture = Http().bindAndHandle(routes, "localhost", 8080)
+    val bindingFuture = Http().bindAndHandle(routes(), "localhost", 8080)
     println(s"Server online at http://localhost:8080/ ...")
 
     StdIn.readLine() // let it run until user presses return
     bindingFuture
       .flatMap(_.unbind())
       .onComplete(_ => system.terminate())
+  }
+
+  def routes(): Route = {
+    pathPrefix("") {
+      getFromResourceDirectory("playground")
+    }
   }
 }
